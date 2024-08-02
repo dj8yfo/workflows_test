@@ -16,7 +16,7 @@ impl Default for Contract {
     }
 }
 
-// We add a beautiful comment to test pr merged flows
+// We add a beautiful comment to test passing staging pr deploy with disabled git pushed to remote check
 // Implement the contract structure
 #[near]
 impl Contract {
