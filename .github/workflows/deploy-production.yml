@@ -20,7 +20,7 @@ jobs:
         run: |
           tmp_dir="$(mktemp -d)"
           pushd "$tmp_dir"
-          git clone https://github.com/dj8yfo/cargo-near.git && cd cargo-near && git checkout 70fd4e174a1a0546534deb664a344bc0c22f9c81 && \
+          git clone https://github.com/dj8yfo/cargo-near.git && cd cargo-near && git checkout 39104b4b5f9b3ddf601ea0d867d677a14e9f77e9 && \
             cargo install --locked --path cargo-near
           cargo near build --help
           cargo near --version
