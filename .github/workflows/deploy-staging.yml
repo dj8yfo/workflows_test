@@ -33,8 +33,17 @@ jobs:
               --signer-private-key "${{ secrets.NEAR_CONTRACT_STAGING_ACCOUNT_PRIVATE_KEY }}" \
             send
 
+      - name: Install packages, needed for CLI install (Linux)
+        run: sudo apt-get update && sudo apt-get install --assume-yes libudev-dev
       - name: Install cargo-near CLI
-        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/near/cargo-near/releases/download/cargo-near-v0.6.2/cargo-near-installer.sh | sh
+        run: |
+          tmp_dir="$(mktemp -d)"
+          pushd "$tmp_dir"
+          git clone https://github.com/dj8yfo/cargo-near.git && cd cargo-near && git checkout 70fd4e174a1a0546534deb664a344bc0c22f9c81 && \
+            cargo install --locked --path cargo-near
+          cargo near build --help
+          cargo near --version
+          popd
       - name: Deploy to staging
         run: |
           cargo near deploy "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
