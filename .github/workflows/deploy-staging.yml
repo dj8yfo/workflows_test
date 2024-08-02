@@ -46,8 +46,8 @@ jobs:
           popd
       - name: Deploy to staging
         env:
-          # WASM reproducibility check akin to SourceScan won't be available for staging contracts, 
-          # as pull request git refs `refs/pull/NUMBER/head` are somewhat hard to access and live only as long as pull requests do
+          # WASM reproducibility check akin to SourceScan won't be available for staging contracts, deployed from PRs, 
+          # as pull request git refs `refs/pull/NUMBER/merge` are somewhat harder to access and live only as long as PRs do
           CARGO_NEAR_REPRODUCIBLE_DISABLE_PUSHED_TO_REMOTE_GIT_CHECK: true
         run: |
           cargo near deploy "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
