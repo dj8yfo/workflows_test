@@ -28,17 +28,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: downaload stable rust channel manifest
         run: curl -o channel-rust-stable.toml -sSL https://static.rust-lang.org/dist/channel-rust-stable.toml
+
       - name: Apply yq filter on manifest 
         id: get_rust_version_string_from_toml
         uses: mikefarah/yq@master
         with:
           cmd:  yq -oy -p toml '.pkg.rust.version' channel-rust-stable.toml
-      - name: Reuse a variable obtained in another step
-        run: |
-          rm channel-rust-stable.toml
-          echo "${{ steps.get_rust_version_string_from_toml.outputs.result }}"
+
       - name: Get latest Rust version
         id: get_rust_version
         run: |
