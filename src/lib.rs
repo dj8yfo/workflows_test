@@ -18,6 +18,7 @@ impl Default for Contract {
 
 // We add a beautiful comment to test pr merged flows
 // Implement the contract structure
+// passing ci staging
 #[near]
 impl Contract {
     // Public method - returns the greeting saved, defaulting to DEFAULT_GREETING
