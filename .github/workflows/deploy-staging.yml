@@ -39,7 +39,7 @@ jobs:
         run: |
           tmp_dir="$(mktemp -d)"
           pushd "$tmp_dir"
-          git clone https://github.com/dj8yfo/cargo-near.git && cd cargo-near && git checkout b0d699b79c15252d62949e6dc1c84e52c0bea827 && \
+          git clone https://github.com/near/cargo-near.git && cd cargo-near && git checkout c592c1b5c4d2d1313050f8cd6b2516dfbbc12afa && \
             cargo install --locked --path cargo-near
           cargo near deploy --help
           cargo near --version
@@ -50,7 +50,7 @@ jobs:
         # 
         # WASM reproducibility check akin to SourceScan won't be available for staging contracts, deployed from PRs 
         run: |
-          cargo near deploy --skip-git-remote-check "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
+          cargo near deploy build-reproducible-wasm --skip-git-remote-check "${{ env.NEAR_CONTRACT_PR_STAGING_ACCOUNT_ID }}" \
             without-init-call \
             network-config "${{ vars.NEAR_CONTRACT_STAGING_NETWORK }}" \
             sign-with-plaintext-private-key \
