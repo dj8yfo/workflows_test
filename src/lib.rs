@@ -16,6 +16,7 @@ impl Default for Contract {
     }
 }
 
+// small comment
 // We add a beautiful comment to test pr merged flows
 // Implement the contract structure
 #[near]
